@@ -7,7 +7,7 @@
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           Back
         </button>
-        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" tabindex="0" />
+        <CountryFlag :country="country"/>
       </div>
       <div v-if="selectedIndex !== index" class="card-body">
         <h1 tabindex="0">{{ country.name.common }}</h1>
@@ -48,10 +48,15 @@
 </template>
 
 <script>
+import CountryFlag from './CountryFlag.vue';
+
 export default {
+  components: {
+    CountryFlag
+  },
   props: {
     filteredCountries: Array,
-    countriesData : Array
+    countriesData: Array
   },
   data() {
     return {
@@ -67,7 +72,7 @@ export default {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
         this.buttons = [];
-        filter.style.display="none"
+        filter.style.display = "none"
       } else {
         this.selectedIndex = null;
         filter.style.display = "flex"
@@ -175,7 +180,6 @@ export default {
         this.buttons.push("N/A");
       }
     }
-
   },
 };
 </script>
