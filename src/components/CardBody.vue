@@ -62,6 +62,10 @@ export default {
     updateCountries(index) {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
+        const filterBody = document.querySelector("#filters");
+        if (filterBody) {
+          filterBody.style.display = "none";
+        }
       } else {
         this.selectedIndex = null;
       }
@@ -82,6 +86,7 @@ export default {
         }
       });
     },
+
     getCapital(country) {
       return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
     },
