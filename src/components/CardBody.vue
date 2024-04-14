@@ -60,17 +60,19 @@ export default {
   },
   methods: {
     updateCountries(index) {
+      this.getBorders(this.filteredCountries[index]);
+      const filterBody = document.querySelector("#filters");
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
-        const filterBody = document.querySelector("#filters");
+
         if (filterBody) {
           filterBody.style.display = "none";
         }
       } else {
         this.selectedIndex = null;
+        filterBody.style.display = "flex" 
       }
-      this.getBorders(this.filteredCountries[index]);
-      const cards = document.querySelectorAll(".card");
+      const cards = document.querySelectorAll(".card"); 
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
       cards.forEach((card, i) => {
@@ -86,7 +88,6 @@ export default {
         }
       });
     },
-
     getCapital(country) {
       return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
     },
