@@ -39,6 +39,7 @@ body {
 .container {
 	padding-top: 0.5rem;
 	font-size: 0.9rem;
+	padding-bottom: 2rem;
 }
 #filters {
 	margin: 1rem 0;
@@ -89,7 +90,7 @@ select {
 .countryCard {
 	display: flex;
 	flex-direction: row;
-	gap: 2rem;
+	gap: 2.5rem;
 	justify-content: center;
 	flex-wrap: wrap;
 	color: hsl(209, 23%, 22%);
@@ -135,6 +136,7 @@ img.card-img-top {
 }
 .selected #contents {
 	height: 220px;
+	display: none;
 }
 .selected img.card-img-top {
 	height: 180px;
@@ -320,7 +322,7 @@ body .dark-theme {
 		width: 100%;
 		box-shadow: none;
 	}
-	.selected #contents img.card-img-top {
+	.selected .contents img.card-img-top {
 		height: auto;
 		margin: 0;
 		object-position: center;
@@ -336,14 +338,17 @@ body .dark-theme {
 		width: 50%;
 	}
 	.selected #contents {
+		display: none;
+	}
+	.selected .detail {
+		width: 60%;
+		margin-top: 1.5rem;
+	}
+	.selected .contents{
 		width: 70%;
 		display: flex;
 		flex-direction: column;
 		height: auto;
-	}
-	.selected .detail {
-		width: 53%;
-		margin-top: 3rem;
 	}
 	.detail {
 		gap: 0;
@@ -358,6 +363,8 @@ body .dark-theme {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+		font-size: 0.85rem;
+		gap: 1rem;
 	}
 	footer p {
 		width: auto;
@@ -368,17 +375,22 @@ body .dark-theme {
 		align-items: center;
 		justify-content: flex-start;
 		gap: 1rem;
+		font-size: 0.85rem;
 	}
 }
 @media only screen and (min-width: 1024px) {
 	.selected {
 		gap: 4rem;
 	}
-	.selected #contents{
+	.selected .contents{
 		width: 50%;
 	}
 	.selected .detail {
 		width: 50%;
+	}
+	.selected #main{
+		font-size: 1rem;
+		gap: 2rem;
 	}
 	form {
 		width: 40%;
@@ -390,6 +402,9 @@ body .dark-theme {
 	}
 	.countryCard {
 		gap: 4rem;
+	}
+	.footer-buttons{
+		font-size: 1rem;
 	}
 }
 @media only screen and (min-width: 1440px) {
