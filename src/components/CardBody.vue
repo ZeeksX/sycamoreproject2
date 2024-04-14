@@ -60,16 +60,18 @@ export default {
   },
   methods: {
     updateCountries(index) {
-      if (this.selectedIndex !== index) {
-        this.selectedIndex = index;
-        this.buttons = [];
-        this.getBorders(this.filteredCountries[index]);
-      } else {
-        this.selectedIndex = null;
-      }
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
+      if (this.selectedIndex !== index) {
+        this.selectedIndex = index;
+        this.buttons = [];
+        filter.style.display="none"
+      } else {
+        this.selectedIndex = null;
+        filter.style.display = "flex"
+      }
+      this.getBorders(this.filteredCountries[index]);
       cards.forEach((card, i) => {
         if (i !== index) {
           card.style.width = "";
@@ -159,10 +161,9 @@ export default {
       return languages;
     },
     getBorders(country) {
-      const borders = country.borders;
-      if (Array.isArray(borders) && borders.length > 0) {
-        borders.forEach(borderCode => {
-          const borderCountry = this.countriesData.find(country => country.cca3 === borderCode);
+      if (country.borders && Array.isArray(country.borders)) {
+        country.borders.forEach(borderCode => {
+          const borderCountry = this.filteredCountries.find(c => c.cca3 === borderCode);
           if (borderCountry) {
             this.buttons.push(borderCountry.name.common);
           } else {
@@ -172,7 +173,8 @@ export default {
       } else {
         this.buttons.push("N/A");
       }
-    },
+    }
+
   },
 };
 </script>
