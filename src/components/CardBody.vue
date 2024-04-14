@@ -60,19 +60,14 @@ export default {
   },
   methods: {
     updateCountries(index) {
-      this.getBorders(this.filteredCountries[index]);
-      const filterBody = document.querySelector("#filters");
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
-
-        if (filterBody) {
-          filterBody.style.display = "none";
-        }
+        this.buttons = [];
+        this.getBorders(this.filteredCountries[index]);
       } else {
         this.selectedIndex = null;
-        filterBody.style.display = "flex" 
       }
-      const cards = document.querySelectorAll(".card"); 
+      const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
       cards.forEach((card, i) => {
@@ -80,7 +75,11 @@ export default {
           card.style.width = "";
           if (this.selectedIndex === null) {
             card.style.display = "flex";
-            filter.style.display = screenWidth <= 700 ? "block" : "flex";
+            if (screenWidth <= 700) {
+              filter.style.display = "block";
+            } else {
+              filter.style.display = "flex";
+            }
           } else {
             card.style.display = "none";
             filter.style.display = "none";
@@ -89,20 +88,14 @@ export default {
       });
     },
     getCapital(country) {
-      return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
-    },
-    getBorders(country) {
-      this.buttons = [];
-      if (country && country.borders) {
-        country.borders.forEach(borderCode => {
-          const borderCountry = this.filteredCountries.find(country => country.cca3 === borderCode);
-          this.buttons.push(borderCountry ? borderCountry.name.common : "N/A");
-        });
+      if (Array.isArray(country)) {
+        return country.join(", ");
+      } else if (typeof country === "string") {
+        return country;
       } else {
-        this.buttons.push("N/A");
+        return "N/A";
       }
     },
-
     format(name) {
       if (Array.isArray(name)) {
         return name.join(", ");
@@ -112,36 +105,73 @@ export default {
     },
     getSubRegion(country) {
       if (typeof country === "string") {
-        return country;
+        return country
       } else {
-        return "N/A";
+        return "N/A"
       }
     },
     getNativeName(country) {
       let nativeName = "";
       const nativeNames = country.name.nativeName;
-      if (Array.isArray(nativeNames) && nativeNames.length > 0) {
-        nativeName = nativeNames[0].official;
-      } else if (typeof nativeNames === "object") {
-        const firstKey = Object.keys(nativeNames)[0];
-        if (firstKey) {
-          nativeName = nativeNames[firstKey].official;
+      if (Array.isArray(nativeNames)) {
+        const firstItem = nativeNames[0];
+        if (firstItem) {
+          nativeName = firstItem["official"];
         }
+      } else if (typeof nativeNames === "object") {
+        const keys = Object.keys(nativeNames);
+        const firstKey = keys[0];
+        if (firstKey) {
+          nativeName = nativeNames[firstKey]["official"];
+        }
+      } else {
+        return "N/A"
       }
-      return nativeName || "N/A";
+      return nativeName;
     },
     getCurrencies(country) {
-      if (country.currencies) {
-        const currency = country.currencies[Object.keys(country.currencies)[0]];
-        return currency ? currency.name : "N/A";
+      let currency = "";
+      const currencies = country.currencies;
+      if (typeof currencies === "object") {
+        const keys = Object.keys(currencies);
+        if (keys.length > 0) {
+          currency = currencies[keys[0]].name;
+        }
+        return currency;
+      } else {
+        return "N/A";
       }
-      return "N/A";
     },
     getLanguages(country) {
-      if (country.languages) {
-        return Object.values(country.languages).join(", ") || "N/A";
+      let languages = "";
+      const languageObject = country.languages;
+      if (typeof languageObject === "object") {
+        const keys = Object.keys(languageObject);
+        keys.forEach((key, index) => {
+          if (index > 0) {
+            languages += ", "
+          }
+          languages += languageObject[key];
+        });
+      } else {
+        return "N/A"
       }
-      return "N/A";
+      return languages;
+    },
+    getBorders(country) {
+      const borders = country.borders;
+      if (Array.isArray(borders) && borders.length > 0) {
+        borders.forEach(borderCode => {
+          const borderCountry = this.countriesData.find(country => country.cca3 === borderCode);
+          if (borderCountry) {
+            this.buttons.push(borderCountry.name.common);
+          } else {
+            this.buttons.push("N/A");
+          }
+        });
+      } else {
+        this.buttons.push("N/A");
+      }
     },
   },
 };
