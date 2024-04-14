@@ -36,10 +36,11 @@
           </div>
           <footer>
             <div class="footer-buttons">
-              <p><b>Border Countries: </b></p>
+              <p tabindex="0"><b>Border Countries: </b></p>
               <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button }}</button>
             </div>
           </footer>
+
         </div>
       </div>
     </div>
@@ -64,6 +65,7 @@ export default {
       } else {
         this.selectedIndex = null;
       }
+      this.getBorders(this.filteredCountries[index]);
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
@@ -84,14 +86,17 @@ export default {
       return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
     },
     getBorders(country) {
-      if (country.borders) {
+      this.buttons = [];
+      if (country && country.borders) {
         country.borders.forEach(borderCode => {
           const borderCountry = this.filteredCountries.find(country => country.cca3 === borderCode);
           this.buttons.push(borderCountry ? borderCountry.name.common : "N/A");
         });
+      } else {
+        this.buttons.push("N/A");
       }
-      return this.buttons.length > 0 ? this.buttons : ["N/A"];
     },
+
     format(name) {
       if (Array.isArray(name)) {
         return name.join(", ");
