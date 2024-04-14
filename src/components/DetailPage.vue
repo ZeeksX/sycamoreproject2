@@ -6,6 +6,7 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 Back
             </router-link>
+            <router-view></router-view>
             <CountryFlag :country="country" />
         </div>
         <div class="detail">
