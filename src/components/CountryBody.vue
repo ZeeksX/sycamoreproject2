@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <FilterBody @filter="updateFilter" />
-    <CardBody :filteredCountries="filteredCountries" />
+    <CardBody :filteredCountries="filteredCountries" :countriesData="countriesData"/>
   </div>
 </template>
 

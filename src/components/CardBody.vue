@@ -51,6 +51,7 @@
 export default {
   props: {
     filteredCountries: Array,
+    countriesData : Array
   },
   data() {
     return {
@@ -163,7 +164,7 @@ export default {
     getBorders(country) {
       if (country.borders && Array.isArray(country.borders)) {
         country.borders.forEach(borderCode => {
-          const borderCountry = this.filteredCountries.find(c => c.cca3 === borderCode);
+          const borderCountry = this.countriesData.find(c => c.cca3 === borderCode);
           if (borderCountry) {
             this.buttons.push(borderCountry.name.common);
           } else {
