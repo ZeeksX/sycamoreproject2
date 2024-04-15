@@ -218,6 +218,10 @@ footer button {
 	border: none;
 	border-radius: unset;
 }
+.dark-theme .selected:focus{
+	border: none;
+	box-shadow: none;
+}
 .dark-theme input::placeholder {
 	color: white;
 }
@@ -364,7 +368,7 @@ body .dark-theme {
 		flex-direction: row;
 		justify-content: space-between;
 		font-size: 0.85rem;
-		gap: 1rem;
+		width: 90%;
 	}
 	footer p {
 		width: auto;
@@ -389,8 +393,8 @@ body .dark-theme {
 		width: 50%;
 	}
 	.selected #main{
-		font-size: 1rem;
-		gap: 2rem;
+		font-size: 0.95rem;
+		gap: 0.5rem;
 	}
 	form {
 		width: 40%;
@@ -409,7 +413,7 @@ body .dark-theme {
 }
 @media only screen and (min-width: 1440px) {
 	.selected {
-		gap: 7rem;
+		gap: 6rem;
 	}
 	.selected .detail {
 		display: flex;
