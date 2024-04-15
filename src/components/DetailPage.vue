@@ -1,12 +1,10 @@
 <template>
     <div class="detail-body">
         <div class="contents">
-            <!-- Use router-link for back button -->
-            <router-link to="/" id="back" aria-label="Go back" tabindex="0">
+            <button id="back" aria-label="Go back" tabindex="0">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 Back
-            </router-link>
-            <router-view></router-view>
+            </button>
             <CountryFlag :country="country" />
         </div>
         <div class="detail">
@@ -42,20 +40,16 @@
 <script>
 import CountryFlag from './CountryFlag.vue';
 export default {
+    props:{
+        country: Object
+    },
     components: {
         CountryFlag
     },
     data() {
         return {
-            country: null, 
-            buttons: [] 
+            buttons: []
         };
-    },
-    created() {
-        const countryCode = this.$route.params.countryCode;
-        const country = this.$props.countriesData.find(c => c.code === countryCode);
-        this.country = country;
-        this.getBorders(country);
     },
     methods: {
         getCapital(country) {

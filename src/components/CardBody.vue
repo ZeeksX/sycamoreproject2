@@ -2,7 +2,7 @@
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" :key="index" class="card"
       @click="handleCardClick(country, index)" :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
-      :aria-label="country.name.common">
+      :aria-label="country.name.common" :to="{ name: 'DetailPage', params: { countryCode: country.code } }">
       <div id="contents">
         <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -10,22 +10,25 @@
         </button>
         <CountryFlag v-if="selectedIndex !== index" :country="country" />
       </div>
-      <div class="card-body">
+      <div v-if="selectedIndex !== index" class="card-body">
         <h1 tabindex="0">{{ country.name.common }}</h1>
         <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
         <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
         <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
+      <DetailPage v-else :country="country"/>
     </div>
   </div>
 </template>
 
 <script>
 import CountryFlag from './CountryFlag.vue';
+import DetailPage from './DetailPage.vue';
 
 export default {
   components: {
     CountryFlag,
+    DetailPage
   },
   props: {
     filteredCountries: Array,
@@ -39,7 +42,6 @@ export default {
   },
   methods: {
     handleCardClick(country, index) {
-      // Redirect to detail page with country code as parameter
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
@@ -68,8 +70,6 @@ export default {
           }
         }
       });
-      this.$router.push({ name: 'DetailPage', params: { countryCode: country } });
-
     },
     getCapital(country) {
       if (Array.isArray(country)) {
