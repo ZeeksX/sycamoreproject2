@@ -33,7 +33,7 @@ export default {
         }
         this.updateFilter();
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
 
     },

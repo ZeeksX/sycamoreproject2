@@ -1,50 +1,57 @@
 <template>
-    <div class="contents">
-        <button id="back" aria-label="Go back" tabindex="0">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            Back
-        </button>
-        <CountryFlag :country="country" />
-    </div>
-    <div class="detail">
-        <div id="detail-body">
-            <div id="contents-two">
-                <h1 tabindex="0">{{ country.name.common }}</h1>
-                <div id="main">
-                    <div>
-                        <p tabindex="0"><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
-                        <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
-                        <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
-                        <p tabindex="0"><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
-                        <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
-                    </div>
-                    <div id="sub">
-                        <p tabindex="0"><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
-                        <p tabindex="0"><b>Currencies: </b>{{ getCurrencies(country) }}</p>
-                        <p tabindex="0"><b>Languages: </b>{{ getLanguages(country) }}</p>
+    <div class="about-view">
+        <div class="contents">
+            <button id="back" aria-label="Go back" tabindex="0">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Back
+            </button>
+            <img v-if="country && country.flags && country.flags.svg" :src="country.flags.svg" class="card-img-top"
+                :alt="country.flags.alt" tabindex="0" />
+            <p v-else>Error: Country flag data not available.</p>
+        </div>
+        <div class="detail" v-if="country">
+            <div id="detail-body">
+                <div id="contents-two">
+                    <h1 tabindex="0">{{ country.name.common }}</h1>
+                    <div id="main">
+                        <div>
+                            <p tabindex="0">
+                                <b>Native Name: </b><span v-html="getNativeName(country)"></span>
+                            </p>
+                            <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
+                            <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
+                            <p tabindex="0">
+                                <b>Sub Region: </b>{{ getSubRegion(country.subregion) }}
+                            </p>
+                            <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+                        </div>
+                        <div id="sub">
+                            <p tabindex="0"><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+                            <p tabindex="0"><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+                            <p tabindex="0"><b>Languages: </b>{{ getLanguages(country) }}</p>
+                        </div>
                     </div>
                 </div>
+                <footer>
+                    <div class="footer-buttons">
+                        <p tabindex="0"><b>Border Countries: </b></p>
+                        <button v-for="(button, index) in buttons" :key="index" tabindex="0">
+                            {{ button }}
+                        </button>
+                    </div>
+                </footer>
             </div>
-            <footer>
-                <div class="footer-buttons">
-                    <p tabindex="0"><b>Border Countries: </b></p>
-                    <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button }}</button>
-                </div>
-            </footer>
+        </div>
+        <div v-else>
+            <p>Error: Country data not available.</p>
         </div>
     </div>
-
 </template>
 
 <script>
-import CountryFlag from '@/components/CountryFlag.vue';
 export default {
     props: {
-        country: Object,
-        buttons: Array
-    },
-    components: {
-        CountryFlag
+        buttons: Array,
+        countriesData: Array,
     },
     methods: {
         getCapital(country) {
@@ -71,15 +78,15 @@ export default {
                     nativeName = nativeNames[firstKey]["official"];
                 }
             } else {
-                return "N/A"
+                return "N/A";
             }
             return nativeName;
         },
         getSubRegion(country) {
             if (typeof country === "string") {
-                return country
+                return country;
             } else {
-                return "N/A"
+                return "N/A";
             }
         },
         format(name) {
@@ -97,10 +104,10 @@ export default {
                 if (keys.length > 0) {
                     currency = currencies[keys[0]].name;
                 }
-                return currency;
             } else {
                 return "N/A";
             }
+            return currency;
         },
         getLanguages(country) {
             let languages = "";
@@ -109,16 +116,15 @@ export default {
                 const keys = Object.keys(languageObject);
                 keys.forEach((key, index) => {
                     if (index > 0) {
-                        languages += ", "
+                        languages += ", ";
                     }
                     languages += languageObject[key];
                 });
             } else {
-                return "N/A"
+                return "N/A";
             }
             return languages;
         },
-        
     }
 };
 </script>

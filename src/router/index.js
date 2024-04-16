@@ -8,7 +8,7 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/about',
+    path: '/about/:countryName',
     name: 'about',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -23,3 +23,4 @@ const router = createRouter({
 })
 
 export default router
+
