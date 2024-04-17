@@ -1,7 +1,7 @@
 <template>
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="handleCardClick(index)"
-         :class="{ selected: selectedIndex === index }" tabindex="0" role="button" :aria-label="country.name.common">
+      :class="{ selected: selectedIndex === index }" tabindex="0" role="button" :aria-label="country.name.common">
       <div id="contents">
         <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -16,8 +16,7 @@
         <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
       <DetailPage v-else :country="countriesData[selectedIndex]" :buttons="buttons"
-                 @updateSelectedCountry="updateSelectedCountry" @preventCardDeselection="handlePreventCardDeselection"
-                 ref="detailPage" />
+        @updateSelectedCountry="updateSelectedCountry" ref="detailPage" />
     </div>
   </div>
 </template>
@@ -111,9 +110,8 @@ export default {
       }
     },
     handlePreventCardDeselection() {
-      console.log("Preventing card deselection"); 
-    }
+      console.log("Preventing card deselection");
+    },
   }
 };
 </script>
-
