@@ -1,6 +1,6 @@
 <template>
   <div class="countryCard">
-    <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="handleCardClick(index)"
+    <div v-for="(country, index) in filteredCountries" :key="country.name.common" class="card" @click="handleCardClick(index)"
       :class="{ selected: selectedIndex === index }" tabindex="0" role="button" :aria-label="country.name.common">
       <div id="contents">
         <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
