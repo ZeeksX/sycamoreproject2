@@ -1,15 +1,14 @@
 <template>
   <div>
-    <HomeView/>
-    <RouterView/>
+    <HomePage />
   </div>
-    
 </template>
+
 <script>
-import HomeView from "@/views/HomeView.vue"
-export default{
-  components:{
-    HomeView
+import HomePage from './components/HomePage.vue'
+export default {
+  components: {
+    HomePage
   }
 }
 </script>

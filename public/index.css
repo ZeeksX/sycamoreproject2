@@ -69,6 +69,9 @@ body {
 #input-bar:focus-within {
 	box-shadow: 0px 0px 4px blue;
 }
+#input-bar:hover{
+	cursor: pointer;
+}
 select {
 	padding: 0.7rem 1rem;
 	box-shadow: 0px 0px 4px #dedede;
@@ -80,6 +83,9 @@ select {
 }
 select:focus {
 	box-shadow: 0px 0px 4px blue;
+}
+select:hover{
+	cursor: pointer;
 }
 .card,
 input,
@@ -122,6 +128,10 @@ img.card-img-top {
 	box-shadow: 0px 0px 4px blue;
 	outline: none;
 }
+.dark-theme .card:focus{
+	box-shadow: 0px 0px 4px #dedede;
+	outline: none;
+}
 .card-body p {
 	margin: 0.5rem 0;
 }
@@ -132,6 +142,9 @@ img.card-img-top {
 	box-shadow: none;
 }
 .selected:focus {
+	box-shadow: none;
+}
+.dark-theme .selected:focus{
 	box-shadow: none;
 }
 .selected #contents {
@@ -218,10 +231,6 @@ footer button {
 	border: none;
 	border-radius: unset;
 }
-.dark-theme .selected:focus{
-	border: none;
-	box-shadow: none;
-}
 .dark-theme input::placeholder {
 	color: white;
 }
@@ -245,10 +254,6 @@ footer button {
 	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
 	background-color: hsl(209, 23%, 22%);
 	color: white;
-}
-.dark-theme .card:focus {
-	box-shadow: 0px 0px 4px #dedede;
-	border: 1px solid #d9d9d9;
 }
 body .dark-theme {
 	background-color: hsl(0, 0%, 98%);
