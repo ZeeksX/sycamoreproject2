@@ -25,15 +25,17 @@
                     </div>
                 </div>
             </div>
-            <footer>
-                <div class="footer-buttons">
-                    <p tabindex="0"><b>Border Countries: </b></p>
-                    <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button }}</button>
-                </div>
-            </footer>
         </div>
     </div>
 
+    <footer>
+        <div class="footer-buttons">
+            <p tabindex="0"><b>Border Countries: </b></p>
+            <button v-for="(button) in buttons" :key="button" tabindex="0" @click="handleBorderButtonClick(button)">
+                {{ button }}
+            </button>
+        </div>
+    </footer>
 </template>
 
 <script>
@@ -46,7 +48,37 @@ export default {
     components: {
         CountryFlag
     },
+    emits: ['updateSelectedCountry'],
     methods: {
+        handleCardClick(index) {
+            const cards = document.querySelectorAll(".card");
+            const filter = document.getElementById("filters");
+            const screenWidth = window.innerWidth;
+            if (this.selectedIndex !== index) {
+                this.selectedIndex = index;
+                filter.style.display = "none";
+            } else {
+                this.selectedIndex = null;
+                filter.style.display = "flex";
+            }
+            this.getBorders(this.filteredCountries[index]);
+            cards.forEach((card, i) => {
+                if (i !== index) {
+                    card.style.width = "";
+                    if (this.selectedIndex === null) {
+                        card.style.display = "flex";
+                        if (screenWidth <= 700) {
+                            filter.style.display = "block";
+                        } else {
+                            filter.style.display = "flex";
+                        }
+                    } else {
+                        card.style.display = "none";
+                        filter.style.display = "none";
+                    }
+                }
+            });
+        },
         getCapital(country) {
             if (Array.isArray(country)) {
                 return country.join(", ");
@@ -56,69 +88,10 @@ export default {
                 return "N/A";
             }
         },
-        getNativeName(country) {
-            let nativeName = "";
-            const nativeNames = country.name.nativeName;
-            if (Array.isArray(nativeNames)) {
-                const firstItem = nativeNames[0];
-                if (firstItem) {
-                    nativeName = firstItem["official"];
-                }
-            } else if (typeof nativeNames === "object") {
-                const keys = Object.keys(nativeNames);
-                const firstKey = keys[0];
-                if (firstKey) {
-                    nativeName = nativeNames[firstKey]["official"];
-                }
-            } else {
-                return "N/A"
-            }
-            return nativeName;
-        },
-        getSubRegion(country) {
-            if (typeof country === "string") {
-                return country
-            } else {
-                return "N/A"
-            }
-        },
-        format(name) {
-            if (Array.isArray(name)) {
-                return name.join(", ");
-            } else {
-                return name;
-            }
-        },
-        getCurrencies(country) {
-            let currency = "";
-            const currencies = country.currencies;
-            if (typeof currencies === "object") {
-                const keys = Object.keys(currencies);
-                if (keys.length > 0) {
-                    currency = currencies[keys[0]].name;
-                }
-                return currency;
-            } else {
-                return "N/A";
-            }
-        },
-        getLanguages(country) {
-            let languages = "";
-            const languageObject = country.languages;
-            if (typeof languageObject === "object") {
-                const keys = Object.keys(languageObject);
-                keys.forEach((key, index) => {
-                    if (index > 0) {
-                        languages += ", "
-                    }
-                    languages += languageObject[key];
-                });
-            } else {
-                return "N/A"
-            }
-            return languages;
-        },
-        
+        handleBorderButtonClick(countryName) {
+            this.$emit('updateSelectedCountry', countryName);
+            this.$emit('preventCardDeselection');
+        }
     }
 };
 </script>

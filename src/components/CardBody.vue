@@ -1,8 +1,7 @@
 <template>
   <div class="countryCard">
-    <div v-for="(country, index) in filteredCountries" :key="index" class="card"
-      @click="handleCardClick( index)" :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
-      :aria-label="country.name.common">
+    <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="handleCardClick(index)"
+         :class="{ selected: selectedIndex === index }" tabindex="0" role="button" :aria-label="country.name.common">
       <div id="contents">
         <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -16,7 +15,9 @@
         <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
         <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
-      <DetailPage v-else :country="country" :buttons="buttons"/>
+      <DetailPage v-else :country="countriesData[selectedIndex]" :buttons="buttons"
+                 @updateSelectedCountry="updateSelectedCountry" @preventCardDeselection="handlePreventCardDeselection"
+                 ref="detailPage" />
     </div>
   </div>
 </template>
@@ -41,17 +42,17 @@ export default {
     };
   },
   methods: {
-    handleCardClick( index) {
+    handleCardClick(index) {
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
         this.buttons = [];
-        filter.style.display = "none"
+        filter.style.display = "none";
       } else {
         this.selectedIndex = null;
-        filter.style.display = "flex"
+        filter.style.display = "flex";
       }
       this.getBorders(this.filteredCountries[index]);
       cards.forEach((card, i) => {
@@ -81,19 +82,38 @@ export default {
       }
     },
     getBorders(country) {
-      if (country.borders && Array.isArray(country.borders)) {
-        country.borders.forEach(borderCode => {
-          const borderCountry = this.countriesData.find(c => c.cca3 === borderCode);
-          if (borderCountry) {
-            this.buttons.push(borderCountry.name.common);
-          } else {
-            this.buttons.push("N/A");
-          }
-        });
-      } else {
+      if (!country || !country.borders || !Array.isArray(country.borders)) {
         this.buttons.push("N/A");
+        return;
       }
+
+      if (!Array.isArray(this.countriesData)) {
+        console.error("Countries data is not available.");
+        return;
+      }
+
+      country.borders.forEach(borderCode => {
+        const borderCountry = this.countriesData.find(c => c.cca3 === borderCode);
+        if (borderCountry) {
+          this.buttons.push(borderCountry.name.common);
+        } else {
+          this.buttons.push("N/A");
+        }
+      });
+    },
+    handleBorderButtonClick(countryName) {
+      this.$refs.detailPage.$emit('updateSelectedCountry', countryName);
+    },
+    updateSelectedCountry(countryName) {
+      const countryIndex = this.countriesData.findIndex(country => country.name.common === countryName);
+      if (countryIndex !== -1) {
+        this.$emit('updateSelectedCountry', countryIndex);
+      }
+    },
+    handlePreventCardDeselection() {
+      console.log("Preventing card deselection"); 
     }
   }
 };
 </script>
+
