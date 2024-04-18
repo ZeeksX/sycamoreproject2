@@ -24,7 +24,6 @@ export default {
       filteredCountries: [],
       perPage: 20,
       currentPage: 1,
-
     };
   },
   mounted() {
@@ -64,6 +63,5 @@ export default {
       this.currentPage = page;
     },
   },
-
 };
 </script>
