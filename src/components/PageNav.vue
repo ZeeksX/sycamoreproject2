@@ -2,15 +2,19 @@
     <div id="page">
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
-                <li class="page-item" :class="{ disabled: currentPage === 1 }">
-                    <a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
-                </li>
-                <li class="page-item" v-for="page in totalPages" :key="page" :class="{ active: page === currentPage }">
-                    <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
-                </li>
-                <li class="page-item" :class="{ disabled: currentPage === totalPages }">
-                    <a class="page-link" href="#" @click.prevent="nextPage">Next</a>
-                </li>
+                <div id="page-items">
+                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                        <a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
+                    </li>
+                    <li class="page-item" v-for="page in totalPages" :key="page"
+                        :class="{ active: page === currentPage }">
+                        <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
+                    </li>
+                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
+                        <a class="page-link" href="#" @click.prevent="nextPage">Next</a>
+                    </li>
+                </div>
+
             </ul>
         </nav>
     </div>

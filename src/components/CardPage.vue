@@ -31,14 +31,17 @@ export default {
     handleCardClick(index) {
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
+      const page = document.getElementById("page")
       const screenWidth = window.innerWidth;
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
         this.buttons = [];
         filter.style.display = "none";
+        page.style.display = "none"
       } else {
         this.selectedIndex = null;
         filter.style.display = "flex";
+        page.style.display = "flex"
       }
       this.getBorders(this.filteredCountries[index]);
       cards.forEach((card, i) => {
