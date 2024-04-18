@@ -436,10 +436,10 @@ body .dark-theme {
 	}
 	form {
 		width: 35%;
-		margin-left: 2.5rem;
+		margin-left: 4rem;
 	}
 	select {
 		width: 15%;
-		margin-right: 2.5rem;
+		margin-right: 4rem;
 	}
 }

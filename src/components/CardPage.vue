@@ -19,12 +19,12 @@ export default {
   },
   props: {
     filteredCountries: Array,
-    countriesData: Array
+    countriesData: Array,
   },
   data() {
     return {
       selectedIndex: null,
-      buttons: []
+      buttons: [],
     };
   },
   methods: {
@@ -71,7 +71,7 @@ export default {
       } else {
         this.buttons.push("N/A");
       }
-    }
+    },
   }
 };
 </script>
