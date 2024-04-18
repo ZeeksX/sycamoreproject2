@@ -2,7 +2,7 @@
   <div class="container">
     <FilterBody @filter="updateFilter" />
     <CardPage :filteredCountries="paginatedCountries" :countriesData="countriesData" />
-    <PageNav :currentPage="currentPage" :totalPages="totalPages" @changePage="changePage" :class="{ display: toggleSelected }"/>
+    <PageNav :currentPage="currentPage" :totalPages="totalPages" @changePage="changePage"/>
   </div>
 </template>
 
@@ -63,10 +63,6 @@ export default {
     changePage(page) {
       this.currentPage = page;
     },
-    toggleSelected(){
-      this.selectedIndex = !this.selectedIndex
-      return this.selectedIndex;
-    }
   },
 };
 </script>
