@@ -196,6 +196,9 @@ footer button {
 	padding: 0.1rem 0.1rem;
 	background-color: white;
 }
+.pagination{
+	margin: 3rem 0 0;
+}
 .dark-theme {
 	background-color: hsl(207, 26%, 17%);
 	color: hsl(0, 0%, 100%);
@@ -259,6 +262,7 @@ body .dark-theme {
 	background-color: hsl(0, 0%, 98%);
 	color: hsl(200, 15%, 8%);
 }
+
 @media only screen and (max-width: 370px) {
 	.navbar-fluid-one {
 		width: 60%;
