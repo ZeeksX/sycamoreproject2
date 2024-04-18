@@ -46,7 +46,7 @@ export default {
           card.style.width = "";
           if (this.selectedIndex === null) {
             card.style.display = "flex";
-            if (screenWidth <= 700) {
+            if (screenWidth <= 640) {
               filter.style.display = "block";
             } else {
               filter.style.display = "flex";

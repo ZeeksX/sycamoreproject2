@@ -278,7 +278,12 @@ body .dark-theme {
 		padding: 1rem 3rem;
 	}
 }
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 576px){
+	.container{
+		max-width: 90%;
+	}
+}
+@media only screen and (min-width: 640px) {
 	.countryCard h1 {
 		font-size: 1.1rem;
 		font-weight: 900;
@@ -385,6 +390,11 @@ body .dark-theme {
 		justify-content: flex-start;
 		gap: 1rem;
 		font-size: 0.85rem;
+	}
+}
+@media only screen and (min-width: 900px) {
+	.countryCard{
+		gap: 3.5rem;
 	}
 }
 @media only screen and (min-width: 1024px) {
