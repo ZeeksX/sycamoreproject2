@@ -54,36 +54,6 @@ export default {
         }
     },
     methods: {
-        handleCardClick(index) {
-            const cards = document.querySelectorAll(".card");
-            const filter = document.getElementById("filters");
-            const screenWidth = window.innerWidth;
-            if (this.selectedIndex !== index) {
-                this.selectedIndex = index;
-                this.buttons = [];
-                filter.style.display = "none"
-            } else {
-                this.selectedIndex = null;
-                filter.style.display = "flex"
-            }
-            this.getBorders(this.filteredCountries[index]);
-            cards.forEach((card, i) => {
-                if (i !== index) {
-                    card.style.width = "";
-                    if (this.selectedIndex === null) {
-                        card.style.display = "flex";
-                        if (screenWidth <= 700) {
-                            filter.style.display = "block";
-                        } else {
-                            filter.style.display = "flex";
-                        }
-                    } else {
-                        card.style.display = "none";
-                        filter.style.display = "none";
-                    }
-                }
-            });
-        },
         showDetail(country) {
             this.selectedCountry = country;
         },
