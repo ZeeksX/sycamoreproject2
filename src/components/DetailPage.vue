@@ -9,7 +9,7 @@
     <div class="detail">
         <div id="detail-body">
             <div id="contents-two">
-                <h1 tabindex="0">{{ country.name.common }}</h1>
+                <h1>{{ country.name.common }}</h1>
                 <div id="main">
                     <div>
                         <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
