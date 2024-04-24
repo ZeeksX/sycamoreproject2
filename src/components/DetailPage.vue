@@ -12,16 +12,16 @@
                 <h1 tabindex="0">{{ country.name.common }}</h1>
                 <div id="main">
                     <div>
-                        <p tabindex="0"><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
-                        <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
-                        <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
-                        <p tabindex="0"><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
-                        <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+                        <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
+                        <p><b>Population: </b>{{ country.population }}</p>
+                        <p><b>Region: </b>{{ country.region }}</p>
+                        <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
+                        <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
                     </div>
                     <div id="sub">
-                        <p tabindex="0"><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
-                        <p tabindex="0"><b>Currencies: </b>{{ getCurrencies(country) }}</p>
-                        <p tabindex="0"><b>Languages: </b>{{ getLanguages(country) }}</p>
+                        <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+                        <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+                        <p><b>Languages: </b>{{ getLanguages(country) }}</p>
                     </div>
                 </div>
             </div>
