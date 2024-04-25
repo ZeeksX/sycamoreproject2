@@ -4,48 +4,48 @@
         <div class="container">
             <div class="countryCard">
                 <div class="card selected">
-                <div class="contents">
-                    <button v-show="getNativeName(country)" id="back" aria-label="Go back" tabindex="0" @click="goBack">
-                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                        Back
-                    </button>
-                    <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt"/>
-                </div>
-                <div class="detail">
-                    <div id="detail-body">
-                        <div id="contents-two">
-                            <h1>{{ country.name.common }}</h1>
-                            <div id="main">
-                                <div>
-                                    <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
-                                    <p><b>Population: </b>{{ country.population }}</p>
-                                    <p><b>Region: </b>{{ country.region }}</p>
-                                    <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
-                                    <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
-                                </div>
-                                <div id="sub">
-                                    <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
-                                    <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
-                                    <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+                    <div class="contents">
+                        <button v-show="getNativeName(country)" id="back" aria-label="Go back" tabindex="0"
+                            @click="goBack">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Back
+                        </button>
+                        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
+                    </div>
+                    <div class="detail">
+                        <div id="detail-body">
+                            <div id="contents-two">
+                                <h1>{{ country.name.common }}</h1>
+                                <div id="main">
+                                    <div>
+                                        <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
+                                        <p><b>Population: </b>{{ country.population }}</p>
+                                        <p><b>Region: </b>{{ country.region }}</p>
+                                        <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
+                                        <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+                                    </div>
+                                    <div id="sub">
+                                        <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+                                        <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+                                        <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+                                    </div>
                                 </div>
                             </div>
+                            <footer>
+                                <div class="footer-buttons">
+                                    <p><b>Border Countries: </b></p>
+                                    <button v-for="(button, index) in buttons" :key="index" tabindex="0"
+                                        @click="updateCountryDetails(button)">{{ button
+                                        }}</button>
+                                </div>
+                            </footer>
                         </div>
-                        <footer>
-                            <div class="footer-buttons">
-                                <p tabindex="0"><b>Border Countries: </b></p>
-                                <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button
-                                    }}</button>
-                            </div>
-                        </footer>
                     </div>
                 </div>
             </div>
-            </div>
-            
         </div>
     </div>
 </template>
-
 <script>
 import NavBar from "@/components/NavBar.vue";
 import { useCountryStore } from "@/store/index.js";
@@ -165,12 +165,33 @@ export default {
                         this.buttons.push("N/A");
                     }
                 }
-            }else{
+            } else {
                 this.buttons.push("N/A")
             }
             return this.buttons;
+        },
+        updateCountryDetails(countryName) {
+            this.country = useCountryStore().countriesData.find(c => c.name.common === countryName);
         }
-
     }
 };
 </script>
+<style>
+#back:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px blue;
+}
+
+.dark-theme #back:focus {
+    box-shadow: 0px 0px 4px #dedede;
+}
+
+.footer-buttons button:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px blue;
+}
+
+.dark-theme .footer-buttons button:focus {
+    box-shadow: 0px 0px 4px #dedede;
+}
+</style>
