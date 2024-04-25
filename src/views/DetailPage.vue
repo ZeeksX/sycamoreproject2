@@ -2,18 +2,19 @@
     <div class="home-page">
         <NavBar />
         <div class="container">
-            <div class="selected">
+            <div class="countryCard">
+                <div class="card selected">
                 <div class="contents">
                     <button v-show="getNativeName(country)" id="back" aria-label="Go back" tabindex="0" @click="goBack">
                         <i class="fa fa-arrow-left" aria-hidden="true"></i>
                         Back
                     </button>
-                    <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" tabindex="0" />
+                    <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt"/>
                 </div>
                 <div class="detail">
                     <div id="detail-body">
                         <div id="contents-two">
-                            <h1 tabindex="0">{{ country.name.common }}</h1>
+                            <h1>{{ country.name.common }}</h1>
                             <div id="main">
                                 <div>
                                     <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
@@ -39,6 +40,8 @@
                     </div>
                 </div>
             </div>
+            </div>
+            
         </div>
     </div>
 </template>

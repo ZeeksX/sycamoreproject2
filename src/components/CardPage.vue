@@ -27,6 +27,7 @@ export default {
 a {
   color: hsl(207, 26%, 17%);
   text-decoration: none;
+  border-radius: 4px;
 }
 .card a:focus {
 	box-shadow: 0px 0px 4px blue;
