@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { useCountryStore } from '@/store/index.js'; // Import Pinia store
+import { useCountryStore } from '@/store/index.js'; 
 import FilterBody from './FilterBody.vue';
 import CardPage from './CardPage.vue';
 import PageNav from './PageNav.vue';

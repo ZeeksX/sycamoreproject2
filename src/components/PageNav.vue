@@ -28,7 +28,7 @@ export default {
     computed: {
         displayedPages() {
             if (window.innerWidth < 768) {
-                const maxPages = Math.min(5, this.totalPages);
+                const maxPages = Math.min(4, this.totalPages);
                 const startPage = Math.max(1, this.currentPage - Math.floor(maxPages / 2));
                 const endPage = Math.min(startPage + maxPages - 1, this.totalPages);
                 return this.getDisplayedPages(startPage, endPage);

@@ -153,7 +153,7 @@ export default {
             return languages;
         },
         goBack() {
-            window.history.back();
+            this.$router.go(-1);
         },
         getBorders(country) {
             if (country.borders && Array.isArray(country.borders)) {
@@ -171,7 +171,11 @@ export default {
             return this.buttons;
         },
         updateCountryDetails(countryName) {
-            this.country = useCountryStore().countriesData.find(c => c.name.common === countryName);
+            const countryDetail = useCountryStore().countriesData.find(c => c.name.common === countryName);
+            if(countryDetail){
+                this.country = countryDetail;
+            }
+            
         }
     }
 };
