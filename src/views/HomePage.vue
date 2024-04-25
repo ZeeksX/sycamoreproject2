@@ -5,8 +5,8 @@
     </div>
 </template>
 <script>
-import CountryBody from "./CountryBody.vue";
-import NavBar from "./NavBar.vue";
+import CountryBody from "../components/CountryBody.vue";
+import NavBar from "../components/NavBar.vue";
 export default {
     name: "HomePage",
     components: {
