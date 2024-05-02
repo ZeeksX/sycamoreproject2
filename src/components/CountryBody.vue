@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <FilterBody @filter="updateFilter" />
-    <CardPage :filteredCountries="filteredCountries" />
+    <CardPage :filteredCountries="paginatedCountries" />
+    <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
+      @changePage="countryStore.changePage" />
   </div>
 </template>
 
@@ -9,13 +11,15 @@
 import { useCountryStore } from '@/store/index.js'; 
 import FilterBody from './FilterBody.vue';
 import CardPage from './CardPage.vue';
-
+import PageNav from './PageNav.vue';
 
 export default {
   name: 'CountryBody',
+
   components: {
     FilterBody,
     CardPage,
+    PageNav
   },
   
   data() {
@@ -25,8 +29,10 @@ export default {
   },
 
   computed: {
-    filteredCountries() {
-      return this.countryStore.filteredCountries;
+    paginatedCountries() {
+      const start = (this.countryStore.currentPage - 1) * this.countryStore.perPage;
+      const end = start + this.countryStore.perPage;
+      return this.countryStore.filteredCountries.slice(start, end);
     },
   },
 

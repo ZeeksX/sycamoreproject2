@@ -124,7 +124,7 @@ img.card-img-top {
 	box-shadow: 0px 0px 4px #dedede;
 	border: 1px solid #fbfbfb;
 }
-.card:focus {
+.card:focus{
 	box-shadow: 0px 0px 4px blue;
 	outline: none;
 }
@@ -141,7 +141,7 @@ img.card-img-top {
 	font-size: 1rem;
 	box-shadow: none;
 }
-.selected:focus {
+.selected:focus{
 	box-shadow: none;
 }
 .dark-theme .selected:focus{
@@ -212,15 +212,20 @@ footer button {
 	color: hsl(209, 23%, 22%);
 }
 .page-link:active{
-	background-color: hsl(209, 23%, 22%);
-	color: hsl(0, 0%, 100%);
+	background-color: lightgray;
+	color: hsl(209, 23%, 22%);
+	box-shadow: none;
+}
+.page-link:focus{
+	outline: none;
+	border: 1px solid #dedede;
 	box-shadow: none;
 }
 .active>.page-link{
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	color: hsl(0, 0%, 100%);
-	outline: none;
+	box-shadow: 0px 0px 1px hsl(207, 26%, 17%);
+	background-color: #dedede;
+	color: hsl(209, 23%, 22%);
+	border: 1px solid #dedede;
 }
 .dark-theme {
 	background-color: hsl(207, 26%, 17%);
@@ -289,6 +294,9 @@ body .dark-theme {
 	background-color: hsl(209, 23%, 22%);
 	color: white;
 	border: 1px solid #06060636;
+}
+.dark-theme .page-link:focus, .dark-theme .page-link:hover{
+	box-shadow: 0px 0px 4px white;
 }
 .dark-theme #page-items{
 	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);

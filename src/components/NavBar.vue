@@ -34,7 +34,10 @@ export default {
 <style scoped>
   
   .navbar-item-two:focus {
-    background-color: white;
+    cursor: pointer;
     color: grey;
+  }
+  .dark-theme .navbar-item-two:focus{
+    color: white;
   }
 </style>
