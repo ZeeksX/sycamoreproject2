@@ -123,6 +123,10 @@ img.card-img-top {
 	width: 16rem;
 	box-shadow: 0px 0px 4px #dedede;
 	border: 1px solid #fbfbfb;
+	height: 330px;
+}
+.card a{
+	height: inherit;
 }
 .card:focus{
 	box-shadow: 0px 0px 4px blue;
