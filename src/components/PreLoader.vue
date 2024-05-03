@@ -13,8 +13,8 @@ export default {
     name: "PreLoader",
     data() {
         return {
-            lightSpinnerSrc: "../assets/Spinner.svg",
-            darkSpinnerSrc: "../assets/darkspinner.svg",
+            lightSpinnerSrc: "@/assets/Spinner.svg",
+            darkSpinnerSrc: "@/assets/darkspinner.svg",
             countryStore: useCountryStore()
         }
     },
