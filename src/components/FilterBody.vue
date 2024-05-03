@@ -58,6 +58,8 @@ export default {
             } else if (this.countryStore.filteredCountries.length <= 8){
                 page.style.justifyContent="flex-end"
                 page.style.marginTop = "7.5rem"
+            } else{
+                errorImg.style.display="none"
             }
 
         },
