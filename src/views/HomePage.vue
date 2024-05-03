@@ -1,8 +1,8 @@
 <template>
-    <div id="preloader" class="preloader" :class="{ 'loader-hidden': !preloaderVisible }">
-        <PreLoader/>
+    <div id="preloader" class="preloader" :class="{ 'loader-hidden': isHomePageVisible }">
+        <PreLoader />
     </div>
-    <div class="home-page" v-show="homePageVisible">
+    <div class="home-page" v-show="isHomePageVisible">
         <NavBar />
         <CountryBody />
     </div>
@@ -12,6 +12,7 @@
 import CountryBody from "@/components/CountryBody.vue";
 import NavBar from "@/components/NavBar.vue";
 import PreLoader from "@/components/PreLoader.vue";
+
 export default {
     name: "HomePage",
     components: {
@@ -21,28 +22,14 @@ export default {
     },
     data() {
         return {
-            preloaderVisible: true,
-            homePageVisible: false
+            isHomePageVisible: false
         };
     },
     mounted() {
-        this.displayLoader();
-    },
-    methods: {
-        displayLoader() {
-            window.addEventListener("load", () => {
-                const loader = document.getElementById("preloader");
-                loader.classList.add("loader-hidden");
-                loader.addEventListener('transitionend', () => {
-                    loader.parentNode.removeChild(loader);
-                    this.showHomePage();
-                });
-            });
-        },
-        showHomePage() {
-            this.homePageVisible = true;
-        }
-    },
+        setTimeout(() => {
+            this.isHomePageVisible = true;
+        }, 1000); // Adjust timing as needed
+    }
 }
 </script>
 
@@ -50,16 +37,21 @@ export default {
 .preloader {
     width: 100%;
     height: 100%;
-    z-index: 9999999;
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 3s ease-out;
+    opacity: 1;
+    transition: opacity 0.1s ease-out;
 }
 
 .loader-hidden {
     opacity: 0;
-    pointer-events: none;
+}
+.home-page{
+    transition: 3s ease-in;
 }
 </style>
