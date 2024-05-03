@@ -6,30 +6,21 @@
       </div>
       <div class="navbar-fluid-two">
         <i class="bi bi-moon-fill" aria-hidden="true"></i>
-        <h3 @click="toggleMode" class="navbar-item-two" tabindex="0" role="button" aria-label="Toggle Dark Mode">{{ mode }}</h3>
+        <h3 @click="countryStore.toggleMode" class="navbar-item-two" tabindex="0" role="button" aria-label="Toggle Dark Mode">{{ countryStore.mode }}</h3>
       </div>
     </nav>
   </div>
 </template>
 
 <script>
+import { useCountryStore } from '@/store';
 export default {
   name: 'NavBar',
   data() {
     return {
-      mode: "Dark Mode",
+      countryStore: useCountryStore()
     }
   },
-  methods: {
-    toggleMode() {
-      const lightspinner = document.getElementById('lightspinner')
-      this.mode = this.mode === 'Light Mode' ? 'Dark Mode' : 'Light Mode';
-      document.body.classList.toggle('dark-theme');
-      const announcement = this.mode === 'Light Mode' ? 'Switched to Light Mode' : 'Switched to Dark Mode';
-      this.$emit('announce', announcement);
-      lightspinner.src ="../assets/darkspinner.svg"
-    }
-  }
 }
 </script>
 

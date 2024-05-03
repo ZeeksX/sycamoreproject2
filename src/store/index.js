@@ -6,6 +6,7 @@ export const useCountryStore = defineStore("country", {
 		filteredCountries: [],
 		perPage: 20,
 		currentPage: 1,
+		mode: "Dark Mode"
 	}),
 
 	actions: {
@@ -20,7 +21,10 @@ export const useCountryStore = defineStore("country", {
 			}
 		},
 		updateFilter({ search = "", region = "" } = {}) {
-			this.filteredCountries = this.filterBySearch(this.filterByRegion(region), search);
+			this.filteredCountries = this.filterBySearch(
+				this.filterByRegion(region),
+				search
+			);
 		},
 		filterBySearch(countries, search) {
 			return countries.filter((country) => {
@@ -28,15 +32,18 @@ export const useCountryStore = defineStore("country", {
 			});
 		},
 		filterByRegion(region) {
-				return this.countriesData.filter((country) => {
-					return country.region.toLowerCase().includes(region.toLowerCase());
-				});
+			return this.countriesData.filter((country) => {
+				return country.region.toLowerCase().includes(region.toLowerCase());
+			});
 		},
 		changePage(page) {
 			this.currentPage = page;
 		},
+		toggleMode() {
+			this.mode = this.mode === "Light Mode" ? "Dark Mode" : "Light Mode";
+			document.body.classList.toggle("dark-theme");
+		},
 	},
-
 	getters: {
 		paginatedCountries() {
 			const start = (this.currentPage - 1) * this.perPage;

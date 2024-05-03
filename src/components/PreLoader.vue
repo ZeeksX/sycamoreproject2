@@ -1,13 +1,27 @@
 <template>
     <div class="preloader">
-        <img src="../assets/Spinner.svg" id="lightspinner"/>
+        <img :src="spinnerSrc" alt="spinner" id="spinner" />
         <h3>Loading...</h3>
-        <p>Please Wait </p>
+        <p>Please Wait</p>
     </div>
 </template>
+
 <script>
-export default{
-    name: "PreLoader"
+import { useCountryStore } from '@/store';
+
+export default {
+    name: "PreLoader",
+    data() {
+        return {
+            lightSpinnerSrc: "../assets/Spinner.svg",
+            darkSpinnerSrc: "../assets/darkspinner.svg",
+            countryStore: useCountryStore()
+        }
+    },
+    computed: {
+        spinnerSrc() {
+            return this.countryStore.mode === 'Dark Mode' ? this.lightSpinnerSrc : this.darkSpinnerSrc;
+        }
+    }
 }
 </script>
-
