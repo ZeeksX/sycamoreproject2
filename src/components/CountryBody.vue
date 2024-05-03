@@ -4,6 +4,7 @@
     <CardPage :filteredCountries="countryStore.paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
+    <img src="../assets/error-image.svg" alt="error-image" id="error-image"/>
   </div>
 </template>
 
@@ -28,7 +29,17 @@ export default {
     };
   },
   mounted() {
-    this.countryStore.fetchData()
+    this.countryStore.fetchData();
   },
 };
 </script>
+<style>
+#error-image{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 50%;
+  margin: 0 auto;
+}
+</style>

@@ -37,6 +37,7 @@ export default {
     methods: {
         filterCountry() {
             this.countryStore.updateFilter({ search: this.search, region: this.selectedRegion });
+            this.displayErrorMessage();
         },
         updateCountry(event) {
             this.search = event.target.value;
@@ -45,7 +46,21 @@ export default {
         updateRegion(event) {
             this.selectedRegion = event.target.value;
             this.filterCountry();
-        }
+        },
+        displayErrorMessage() {
+            const page = document.getElementById("page")
+            const errorImg = document.getElementById("error-image")
+           
+            if (this.countryStore.filteredCountries.length === 0) {
+                console.error("No country found")
+                page.style.display="none"
+                errorImg.style.display="flex"
+            } else if (this.countryStore.filteredCountries.length <= 8){
+                page.style.justifyContent="flex-end"
+                page.style.marginTop = "7.5rem"
+            }
+
+        },
     },
 };
 </script>
