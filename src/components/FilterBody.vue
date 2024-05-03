@@ -60,6 +60,7 @@ export default {
                 page.style.marginTop = "7.5rem"
             } else{
                 errorImg.style.display="none"
+                page.style.display="flex"
             }
 
         },
