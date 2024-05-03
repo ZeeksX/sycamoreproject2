@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <FilterBody @filter="updateFilter" />
+    <FilterBody/>
     <CardPage :filteredCountries="paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
