@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <FilterBody/>
-    <CardPage :filteredCountries="paginatedCountries" />
+    <CardPage :filteredCountries="countryStore.paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
   </div>
@@ -27,24 +27,8 @@ export default {
       countryStore: useCountryStore(),
     };
   },
-
-  computed: {
-    paginatedCountries() {
-      const start = (this.countryStore.currentPage - 1) * this.countryStore.perPage;
-      const end = start + this.countryStore.perPage;
-      return this.countryStore.filteredCountries.slice(start, end);
-    },
-  },
-
   mounted() {
-    this.updateData();
-  },
-
-  methods: {
-    async updateData() {
-      await this.countryStore.fetchData();
-      
-    },
+    this.countryStore.fetchData()
   },
 };
 </script>
