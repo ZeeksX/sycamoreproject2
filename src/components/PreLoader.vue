@@ -1,6 +1,6 @@
 <template>
     <div class="preloader">
-        <img src="../assets/Spinner.svg"/>
+        <img src="../assets/Spinner.svg" id="lightspinner"/>
         <h3>Loading...</h3>
         <p>Please Wait </p>
     </div>
@@ -10,8 +10,4 @@ export default{
     name: "PreLoader"
 }
 </script>
-<style>
-.dark-theme .preloader{
-    background-color:  hsl(207, 26%, 17%);
-}
-</style>
+

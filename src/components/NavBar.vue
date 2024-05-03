@@ -22,10 +22,12 @@ export default {
   },
   methods: {
     toggleMode() {
+      const lightspinner = document.getElementById('lightspinner')
       this.mode = this.mode === 'Light Mode' ? 'Dark Mode' : 'Light Mode';
       document.body.classList.toggle('dark-theme');
       const announcement = this.mode === 'Light Mode' ? 'Switched to Light Mode' : 'Switched to Dark Mode';
       this.$emit('announce', announcement);
+      lightspinner.src ="../assets/darkspinner.svg"
     }
   }
 }
