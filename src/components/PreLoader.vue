@@ -10,4 +10,8 @@ export default{
     name: "PreLoader"
 }
 </script>
-
+<style>
+.dark-theme .preloader{
+    background-color:  hsl(207, 26%, 17%);
+}
+</style>
