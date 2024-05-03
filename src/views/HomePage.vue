@@ -1,5 +1,5 @@
 <template>
-    <div id="preloader" class="preloader" :class="{ 'loader-hidden': isHomePageVisible }">
+    <div id="preloader" class="preloader" :class="{ 'loader-hidden': isHomePageVisible}">
         <PreLoader />
     </div>
     <div class="home-page" v-show="isHomePageVisible">
@@ -22,13 +22,13 @@ export default {
     },
     data() {
         return {
-            isHomePageVisible: false
+            isHomePageVisible: false,
         };
     },
-    mounted() {
+    created() {
         setTimeout(() => {
             this.isHomePageVisible = true;
-        }, 1000); // Adjust timing as needed
+        }, 1000); 
     }
 }
 </script>
@@ -51,9 +51,9 @@ export default {
 .loader-hidden {
     display: none;
     opacity: 0;
-
 }
 .home-page{
     transition: 3s ease-in;
 }
 </style>
+
