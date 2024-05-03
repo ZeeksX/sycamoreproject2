@@ -43,10 +43,7 @@ export default {
   methods: {
     async updateData() {
       await this.countryStore.fetchData();
-      this.updateFilter();
-    },
-    updateFilter({ search = '', region = 'Filter by Region' } = {}) {
-      this.countryStore.updateFilter({ search, region });
+      
     },
   },
 };

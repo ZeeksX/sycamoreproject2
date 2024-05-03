@@ -9,19 +9,20 @@
             </div>
         </form>
         <label for="region" class="sr-only">Filter by Region</label>
-        <select id="region" @change="updateRegion" v-model="region" aria-label="Filter by Region">
+        <select name="region" id="region" @change="updateRegion" aria-label="Filter by Region">
             <option disabled selected hidden>Filter by Region</option>
-            <option v-for="(continent) in Continents" :key="continent">{{ continent }}</option>
+            <option v-for="(continent) in Continents" :key="continent" :value="continent">{{ continent }}</option>
         </select>
     </div>
 </template>
 
 <script>
+import { useCountryStore } from '@/store';
 export default {
     data() {
         return {
             search: "",
-            region: "Filter by Region",
+            selectedRegion: "",
             Continents: [
                 "Africa",
                 "Americas",
@@ -30,20 +31,21 @@ export default {
                 "Oceania",
                 "Antarctic",
             ],
+            countryStore: useCountryStore()
         };
     },
     methods: {
         filterCountry() {
-            this.$emit("filter", { search: this.search, region: this.region });
+            this.countryStore.updateFilter({ search: this.search, region: this.selectedRegion });
         },
-        updateRegion() {
-            this.search = this.region;
+        updateCountry(event) {
+            this.search = event.target.value;
             this.filterCountry();
         },
-        updateCountry() {
-            this.region = "Filter by Region";
+        updateRegion(event) {
+            this.selectedRegion = event.target.value;
             this.filterCountry();
-        },
+        }
     },
 };
 </script>

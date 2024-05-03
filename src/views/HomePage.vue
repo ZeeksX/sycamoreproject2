@@ -49,7 +49,9 @@ export default {
 }
 
 .loader-hidden {
+    display: none;
     opacity: 0;
+
 }
 .home-page{
     transition: 3s ease-in;
