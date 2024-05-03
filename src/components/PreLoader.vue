@@ -8,19 +8,18 @@
 
 <script>
 import { useCountryStore } from '@/store';
-
+import lightSpinnerSrc from "@/assets/Spinner.svg"
+import darkSpinnerSrc from "@/assets/darkspinner.svg"
 export default {
     name: "PreLoader",
     data() {
         return {
-            lightSpinnerSrc: "@/assets/Spinner.svg",
-            darkSpinnerSrc: "@/assets/darkspinner.svg",
             countryStore: useCountryStore()
         }
     },
     computed: {
         spinnerSrc() {
-            return this.countryStore.mode === 'Dark Mode' ? this.lightSpinnerSrc : this.darkSpinnerSrc;
+            return this.countryStore.mode === 'Dark Mode' ? lightSpinnerSrc : darkSpinnerSrc;
         }
     }
 }
