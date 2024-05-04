@@ -6,7 +6,7 @@
       </div>
       <div class="navbar-fluid-two">
         <i class="bi bi-moon-fill" aria-hidden="true"></i>
-        <h3 @click="countryStore.toggleMode" class="navbar-item-two" tabindex="0" role="button" aria-label="Toggle Dark Mode">{{ countryStore.mode }}</h3>
+        <h3 @click="countryStore.toggleMode" @keydown.enter="countryStore.toggleMode" class="navbar-item-two" tabindex="0" role="button" aria-label="Toggle Dark Mode">{{ countryStore.mode }}</h3>
       </div>
     </nav>
   </div>
