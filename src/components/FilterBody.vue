@@ -55,12 +55,21 @@ export default {
                 console.error("No country found")
                 page.style.display="none"
                 errorImg.style.display="flex"
-            } else if (this.countryStore.filteredCountries.length <= 8){
-                page.style.justifyContent="flex-end"
-                page.style.marginTop = "7.5rem"
+            } else if(this.countryStore.filteredCountries.length <= 4){
+                page.style.marginTop = "4.5rem"
+                page.style.display ="flex"
+                errorImg.style.display ="none"
+            } 
+            else if (this.countryStore.filteredCountries.length <= 8){
+                page.style.marginTop ="2rem"
+                page.style.justifyContent="center"
+                errorImg.style.display ="none"
+                page.style.display="flex"
             } else{
                 errorImg.style.display="none"
                 page.style.display="flex"
+                page.style.marginTop ="0rem"
+                
             }
 
         },
