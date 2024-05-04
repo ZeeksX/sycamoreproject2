@@ -33,10 +33,10 @@ export default {
     },
     computed: {
         displayedPages() {
-                const maxPages = Math.min(3, this.totalPages);
-                const startPage = Math.max(1, this.currentPage - Math.floor(maxPages / 2));
-                const endPage = Math.min(startPage + maxPages - 1, this.totalPages);
-                return this.getDisplayedPages(startPage, endPage);
+            const maxPages = window.innerWidth < 375 ? 2 : 3; 
+            const startPage = Math.max(1, this.currentPage - Math.floor(maxPages / 2));
+            const endPage = Math.min(startPage + maxPages - 1, this.totalPages);
+            return this.getDisplayedPages(startPage, endPage);
         },
     },
     methods: {
