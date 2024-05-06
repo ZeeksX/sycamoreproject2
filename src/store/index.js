@@ -6,7 +6,7 @@ export const useCountryStore = defineStore("country", {
 		filteredCountries: [],
 		perPage: 20,
 		currentPage: 1,
-		mode: "Dark Mode"
+		mode: "Dark Mode",
 	}),
 
 	actions: {
@@ -21,18 +21,16 @@ export const useCountryStore = defineStore("country", {
 			}
 		},
 		updateFilter({ search = "", region = "" } = {}) {
-			this.filteredCountries = this.filterBySearch(
-				this.filterByRegion(region),
-				search
-			);
+			this.filteredCountries = this.filterByRegion(this.filterBySearch(search), region);
 		},
-		filterBySearch(countries, search) {
-			return countries.filter((country) => {
+		filterBySearch(search) {
+			this.currentPage = 1;
+			return this.countriesData.filter((country) => {
 				return country.name.common.toLowerCase().includes(search.toLowerCase());
 			});
 		},
-		filterByRegion(region) {
-			return this.countriesData.filter((country) => {
+		filterByRegion(countries, region) {
+			return countries.filter((country) => {
 				return country.region.toLowerCase().includes(region.toLowerCase());
 			});
 		},
