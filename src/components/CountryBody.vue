@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <FilterBody />
-    <CardPage/>
+    <CardPage :filteredCountries="countryStore.paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
     <img src="../assets/error-image.svg" alt="error-image" id="error-image" />
@@ -16,6 +16,7 @@ import PageNav from './PageNav.vue';
 
 export default {
   name: 'CountryBody',
+
   components: {
     FilterBody,
     CardPage,

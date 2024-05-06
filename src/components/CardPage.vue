@@ -1,6 +1,6 @@
 <template>
-  <div class="countryCard" :style="applyFlexStyles">
-    <div v-for="(country, index) in countryStore.paginatedCountries" :key="index" class="card">
+  <div class="countryCard">
+    <div v-for="(country, index) in filteredCountries" :key="index" class="card">
       <router-link :to="{ name: 'Detail', params: { name: country.name.common } }">
         <CardBody :country="country" />
       </router-link>
@@ -10,27 +10,15 @@
 
 <script>
 
-import { useCountryStore } from '@/store';
 import CardBody from './CardBody.vue';
 export default {
   components: {
     CardBody
   },
- data() {
-  return {
-    countryStore: useCountryStore()
-  }
- },
-  methods: {
-    applyFlexStyles() {
-      if (this.countryStore.filteredCountries.length < 4 && window.innerWidth >= 1024) {
-        return {
-          display: 'flex',
-          justifyContent: 'flex-start'
-        };
-      } else {
-        return {}; // return empty object if conditions are not met
-      }
+  props: {
+    filteredCountries: {
+      type: Array,
+      required: true
     }
   },
 };
