@@ -42,7 +42,7 @@ export default {
         },
         displayErrorMessage() {
             const page = document.getElementById("page");
-            const errorImg = document.getElementById("error-image");
+            const errorImg = document.getElementById("error-content");
 
             page.style.display = this.countryStore.filteredCountries.length === 0 ? "none" : "flex";
             errorImg.style.display = this.countryStore.filteredCountries.length === 0 ? "flex" : "none";

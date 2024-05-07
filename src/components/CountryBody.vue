@@ -4,7 +4,10 @@
     <CardPage :filteredCountries="countryStore.paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
-    <img src="../assets/error-image.svg" alt="error-image" id="error-image" />
+      <div id="error-content">
+        <h3>Oops...<span style='font-size:100px;'>&#128546;</span></h3>
+        <p>No country data found</p>
+      </div>
   </div>
 </template>
 
@@ -34,21 +37,22 @@ export default {
 };
 </script>
 <style>
-#error-image {
+#error-content {
   display: none;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: 80%;
   margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
-  #error-image {
+  #error-content {
     display: none;
     justify-content: center;
     align-items: center;
     width: 450px;
-    height: 50%;
+    height: 50vh;
     margin: 0 auto;
   }
 }
