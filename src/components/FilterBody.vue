@@ -11,7 +11,7 @@
         <label for="region" class="sr-only">Filter by Region</label>
         <select v-model="selectedRegion" @change="filterCountry" name="region" id="region"
             aria-label="Filter by Region">
-            <option disabled value="">Filter by Region</option>
+            <option hidden disabled value="">Filter by Region</option>
             <option v-for="continent in continents" :key="continent" :value="continent">{{ continent }}</option>
         </select>
     </div>

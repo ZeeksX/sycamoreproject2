@@ -1,3 +1,10 @@
+:root{
+	--background-color-dark:  hsl(207, 26%, 17%);
+	--background-color-items-dark: hsl(209, 23%, 22%);
+	--box-shadow-dark: 0px 0px 4px #dedede;
+	--box-shadow-light: 0px 0px 4px hsl(207, 26%, 17%);
+	--border-dark: 1px solid #06060636;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -41,7 +48,7 @@ body {
 	box-shadow: 0px 0px 4px blue;
 }
 .dark-theme .navbar-fluid-two h3:focus{
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 }
 .container {
 	padding-top: 0.5rem;
@@ -54,7 +61,7 @@ body {
 }
 #input-bar {
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	height: 50px;
 	display: flex;
 	justify-content: center;
@@ -82,7 +89,7 @@ body {
 }
 select {
 	padding: 0.7rem 1rem;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #fbfbfb;
 	width: 50%;
 	outline: 0;
@@ -99,7 +106,7 @@ select:hover {
 input,
 select {
 	background-color: white;
-	color: hsl(207, 26%, 17%);
+	color: var(--background-color-items-dark);
 }
 .countryCard {
 	display: flex;
@@ -107,7 +114,7 @@ select {
 	gap: 2.5rem;
 	justify-content: center;
 	flex-wrap: wrap;
-	color: hsl(209, 23%, 22%);
+	color: var(--background-color-items-dark);
 }
 .countryCard h1 {
 	font-size: 1.1rem;
@@ -129,7 +136,7 @@ img.card-img-top {
 }
 .card {
 	width: 16rem;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #fbfbfb;
 	height: 330px;
 }
@@ -141,7 +148,7 @@ img.card-img-top {
 	outline: none;
 }
 .dark-theme .card:focus {
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	outline: none;
 }
 .card-body p {
@@ -180,7 +187,7 @@ img.card-img-top {
 	margin: 1rem 0;
 	width: 6rem;
 	border: 1px solid #f7f7f7;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	background-color: white;
 }
 .detail {
@@ -202,7 +209,7 @@ footer p {
 }
 footer button {
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #d9d9d9;
 	min-width: 6.1rem;
 	padding: 0.1rem 0.1rem;
@@ -219,16 +226,16 @@ footer button {
 }
 #page-items {
 	display: flex;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 }
 .page-link {
-	color: hsl(209, 23%, 22%);
+	color: var(--background-color-items-dark);
 }
 .page-link:active {
 	background-color: lightgray;
-	color: hsl(209, 23%, 22%);
+	color: var(--background-color-items-dark);
 	box-shadow: none;
 }
 .page-link:focus {
@@ -237,43 +244,43 @@ footer button {
 	box-shadow: none;
 }
 .active > .page-link {
-	box-shadow: 0px 0px 1px hsl(207, 26%, 17%);
+	box-shadow: 0px 0px 1px var(--background-color-dark);
 	background-color: #dedede;
-	color: hsl(209, 23%, 22%);
+	color: var(--background-color-items-dark);
 	border: 1px solid #dedede;
 }
 .dark-theme {
-	background-color: hsl(207, 26%, 17%);
+	background-color: var(--background-color-dark);
 	color: hsl(0, 0%, 100%);
 }
 .dark-theme .navbar {
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	background-color: var(--background-color-items-dark);
+	box-shadow: var(--box-shadow-light);
 }
 .dark-theme #input-field {
-	background-color: hsl(209, 23%, 22%);
+	background-color: var(--background-color-items-dark);
 	color: hsl(0, 0%, 100%);
 	border: none;
 	height: 48px;
 }
 .dark-theme .card,
 .dark-theme select {
-	background-color: hsl(209, 23%, 22%);
+	background-color: var(--background-color-items-dark);
 	color: hsl(0, 0%, 100%);
-	border: 1px solid #06060636;
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	border: var(--border-dark);
+	box-shadow: var(--box-shadow-light);
 }
 .dark-theme #input-bar:focus-within {
-	box-shadow: 0px 0px 4px white;
+	box-shadow: var(--box-shadow-dark);
 }
 .dark-theme select {
-	border: 1px solid #06060636;
+	border: var(--border-dark);
 }
 .dark-theme select:focus {
-	box-shadow: 0px 0px 4px white;
+	box-shadow: var(--box-shadow-dark);
 }
 .dark-theme .selected {
-	background-color: hsl(207, 26%, 17%);
+	background-color: var(--background-color-dark);
 	border: none;
 	border-radius: unset;
 }
@@ -281,46 +288,43 @@ footer button {
 	color: white;
 }
 .dark-theme #input-bar {
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	border: 1px solid #06060636;
-	background-color: hsl(209, 23%, 22%);
+	box-shadow: var(--box-shadow-light);
+	border: var(--border-dark);
+	background-color: var(--background-color-items-dark);
 }
 .dark-theme #input-bar i {
 	color: white;
 }
 .dark-theme footer button {
-	border: 1px solid #06060636;
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	border: var(--border-dark);
+	background-color: var(--background-color-items-dark);
+	box-shadow: var(--box-shadow-light);
 	color: white;
 }
 .dark-theme #back {
-	border: 1px solid #06060636;
+	border: var(--border-dark);
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	background-color: hsl(209, 23%, 22%);
+	box-shadow: var(--box-shadow-light);
+	background-color: var(--background-color-items-dark);
 	color: white;
 }
-body .dark-theme {
-	background-color: hsl(0, 0%, 98%);
-	color: hsl(200, 15%, 8%);
-}
+
 .dark-theme .page-link {
-	background-color: hsl(209, 23%, 22%);
+	background-color: var(--background-color-items-dark);
 	color: white;
-	border: 1px solid #06060636;
+	border: var(--border-dark);
 }
 .dark-theme .page-link:focus,
 .dark-theme .page-link:hover {
 	box-shadow: 0px 0px 4px white;
 }
 .dark-theme #page-items {
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	border: 1px solid #06060636;
+	box-shadow: var(--box-shadow-light);
+	border: var(--border-dark);
 }
 .dark-theme .active > .page-link {
 	background-color: white;
-	color: hsl(207, 26%, 17%);
+	color: var(--background-color-dark);
 }
 @media only screen and (max-width: 370px) {
 	.navbar-fluid-one {
